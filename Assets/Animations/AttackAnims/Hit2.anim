@@ -7873,7 +7873,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2.3333333
+    m_StopTime: 2.266667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -59027,15 +59027,15 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.1333334
-    functionName: Verificar_combo
+  - time: 2.1666667
+    functionName: CanMove
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2.3333333
-    functionName: CanMove
+  - time: 2.2333333
+    functionName: Verificar_combo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

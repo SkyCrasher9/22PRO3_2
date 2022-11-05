@@ -6,7 +6,7 @@ public class combo : MonoBehaviour
 {
     Animator animator; 
 
-    int cantidad_click; 
+    public static int cantidad_click; 
     bool puedo_dar_click;
 
     void Start()

@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public MeshRenderer MeshRendererBack;
     public MeshRenderer MeshRendererHand;
     private Animator animator;
+    private combo combo;
 
     private void Start()
     {
@@ -33,19 +34,20 @@ public class Weapon : MonoBehaviour
             isEquipped = true;
         }
 
-        if (Input.GetMouseButtonDown(3) && isEquipped == true) //Si hago Click en la rueda del ratón y está equipada.
+        if (isEquipped == true && combo.cantidad_click == 0)
         {
-            animator.SetBool("HasSword", false);
-            DisolveHand.Play();
-            MeshRendererBack.enabled = true;
-            DisolveBack.Play();
-            MeshRendererHand.enabled = false;
-            isEquipped = false;
+            StartCoroutine(WaitForTime(3.0F));
         }
 
     }
-    void SwapWeapons()
+    IEnumerator WaitForTime(float waitTime)
     {
-
+        yield return new WaitForSeconds(waitTime);
+        animator.SetBool("HasSword", false);
+        DisolveHand.Play();
+        MeshRendererBack.enabled = true;
+        DisolveBack.Play();
+        MeshRendererHand.enabled = false;
+        isEquipped = false;
     }
 }
