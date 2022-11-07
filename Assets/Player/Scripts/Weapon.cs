@@ -36,7 +36,7 @@ public class Weapon : MonoBehaviour
 
         if (isEquipped == true && combo.cantidad_click == 0)
         {
-            StartCoroutine(WaitForTime(3.0F));
+            //StartCoroutine(WaitForTime(3.0F));
         }
 
     }
