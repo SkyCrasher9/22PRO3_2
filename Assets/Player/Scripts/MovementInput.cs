@@ -32,10 +32,18 @@ public class MovementInput : MonoBehaviour
     [Range(0, 1f)]
     public float StopAnimTime = 0.15f;
 
+    [Header("Jump")]
+    private float verticalVelocity;
+    private float gravity = 14.0f;
+    private float jumpForce = 10.0f;
+    [SerializeField] LayerMask groundLayerMask;
+    [SerializeField] float groundCheckDistance = 5f;
+
 
     private float verticalVel;
     private Vector3 moveVector;
     public bool canMove;
+
 
     // Use this for initialization
     void Start()
@@ -52,8 +60,32 @@ public class MovementInput : MonoBehaviour
             return;
         InputMagnitude();
         anim.SetFloat("Blend", Speed);
-    }
 
+        if (isOnGround)
+        {
+            verticalVelocity = -gravity * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                verticalVelocity = jumpForce;
+                anim.SetBool("isJumping", true);
+            }
+        }
+        else
+        {
+            verticalVelocity -= gravity *Time.deltaTime;
+            anim.SetBool("isJumping", false);
+        }
+
+        Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
+        controller.Move(moveVector * Time.deltaTime);
+    }
+    private bool isOnGround
+    {
+        get
+        {
+            return Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, groundCheckDistance);
+        }
+    }
     void PlayerMoveAndRotation()
     {
         InputX = Input.GetAxis("Horizontal");
