@@ -34,7 +34,7 @@ public class MovementInput : MonoBehaviour
 
     [Header("Jump")]
     private float verticalVelocity;
-    private float gravity = 14.0f;
+    public float gravity = 20.0f;
     private float jumpForce = 10.0f;
     [SerializeField] LayerMask groundLayerMask;
     [SerializeField] float groundCheckDistance = 5f;
@@ -66,8 +66,8 @@ public class MovementInput : MonoBehaviour
             verticalVelocity = -gravity * Time.deltaTime;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                verticalVelocity = jumpForce;
                 anim.SetBool("isJumping", true);
+                verticalVelocity = jumpForce;
             }
         }
         else
