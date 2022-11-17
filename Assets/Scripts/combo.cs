@@ -15,15 +15,21 @@ public class combo : MonoBehaviour
     public Slash slash2;
     public Slash slash3;
 
+    BoxCollider colliderWeapon;
+    public GameObject objWeapon;
+
     void Start()
     {
-
+       colliderWeapon = objWeapon.GetComponent<BoxCollider>();
         animator = GetComponent<Animator>();
         cantidad_click = 0;
         puedo_dar_click = true;
         DisableSlash1();
         DisableSlash2();
         DisableSlash3();
+
+
+        colliderWeapon.enabled = false;
     }
 
     void Update()
@@ -32,6 +38,13 @@ public class combo : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("AAAAH!");
+        }
+    }
     void Iniciar_combo()
     {
         if (puedo_dar_click)
@@ -67,6 +80,17 @@ public class combo : MonoBehaviour
     {
         slash3.slashObj.SetActive(false);
     }
+
+    public void AttackStart()
+    {
+        colliderWeapon.enabled = true;
+    }
+
+    public void AttackEnd()
+    {
+        colliderWeapon.enabled = false;
+    }
+
     public void Verificar_combo()
     {
 
