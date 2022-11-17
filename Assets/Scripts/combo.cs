@@ -17,6 +17,7 @@ public class combo : MonoBehaviour
 
     BoxCollider colliderWeapon;
     public GameObject objWeapon;
+    
 
     void Start()
     {
@@ -42,7 +43,7 @@ public class combo : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("AAAAH!");
+            //Debug.Log("AAAAH!");
         }
     }
     void Iniciar_combo()
