@@ -38,7 +38,7 @@ public class MovementInput : MonoBehaviour
     private float jumpForce = 10.0f;
     [SerializeField] LayerMask groundLayerMask;
     [SerializeField] float groundCheckDistance = 5f;
-
+    public bool isGrounded;
 
     private float verticalVel;
     private Vector3 moveVector;
@@ -66,19 +66,29 @@ public class MovementInput : MonoBehaviour
             verticalVelocity = -gravity * Time.deltaTime;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                anim.SetBool("isJumping", true);
                 verticalVelocity = jumpForce;
             }
         }
         else
         {
             verticalVelocity -= gravity *Time.deltaTime;
-            anim.SetBool("isJumping", false);
         }
 
         Vector3 moveVector = new Vector3(0, verticalVelocity, 0);
         controller.Move(moveVector * Time.deltaTime);
+
+        if(verticalVelocity > 0 && Input.GetKeyDown(KeyCode.Space))
+        {
+            isGrounded = false;
+            anim.SetBool("isJumping", true);
+        }
+        else
+        {
+            isGrounded = true;
+            anim.SetBool("isJumping", false);
+        }
     }
+
     private bool isOnGround
     {
         get
