@@ -1283,7 +1283,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436916155}
-  m_LocalRotation: {x: 0.109011516, y: -1.496321e-15, z: 5.4980104e-16, w: 0.9940405}
+  m_LocalRotation: {x: 0.10901149, y: 0.000000030536455, z: -0.0000000033487817, w: 0.9940405}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2671,7 +2671,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.109011516, y: 0, z: 4.440892e-16, w: 0.9940405}
+  m_LocalRotation: {x: 0.10901149, y: 0.000000030536455, z: -0.0000000033487817, w: 0.9940405}
   m_LocalPosition: {x: 0, y: 2.5, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5458,7 +5458,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107243489}
-  m_LocalRotation: {x: 0.109011516, y: 1.496321e-15, z: -5.4980104e-16, w: 0.9940405}
+  m_LocalRotation: {x: 0.10901149, y: -0.000000030536455, z: 0.0000000033487817, w: 0.9940405}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5542,7 +5542,6 @@ GameObject:
   - component: {fileID: 4359725102820066435}
   - component: {fileID: 1973752737311060041}
   - component: {fileID: 4359725102820066436}
-  - component: {fileID: 4359725102820066437}
   m_Layer: 0
   m_Name: KatanaHand
   m_TagString: Untagged
@@ -6393,7 +6392,7 @@ GameObject:
   - component: {fileID: 8670507775031777379}
   - component: {fileID: 8670507775031777381}
   - component: {fileID: 8670507775031777382}
-  - component: {fileID: 8670507775031777383}
+  - component: {fileID: 8670507775031777384}
   m_Layer: 9
   m_Name: Character
   m_TagString: Player
@@ -7817,18 +7816,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3113266, y: 0.07803471, z: 0.17846136}
   m_Center: {x: -0.3315488, y: 0.008087619, z: -0.000079607315}
---- !u!114 &4359725102820066437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 28378223503921564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78654d0913e7e83429ab29c2a28e1d48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4450685040755839035
 GameObject:
   m_ObjectHideFlags: 0
@@ -10581,19 +10568,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b700f76a7880f164685d39fef78c7d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8670507775031777383
-MonoBehaviour:
+--- !u!136 &8670507775031777384
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1784294225826007756}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1990847ed8136e949b923bb9f2469ba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponActiveTime: 0
+  m_Radius: 0.26
+  m_Height: 1.8312827
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9067156, z: 0}
 --- !u!4 &8670507776213478880
 Transform:
   m_ObjectHideFlags: 0
