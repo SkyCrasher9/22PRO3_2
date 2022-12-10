@@ -42,8 +42,8 @@ public class Patrol_Thief : StateMachineBehaviour
         {
             return;
         }
-        Target = PatrolPoints[NextPoint];
         NextPoint = (NextPoint + 1) % PatrolPoints.Length;
+        Target = PatrolPoints[NextPoint];
         Thief_Agent.destination = PatrolPoints[NextPoint].gameObject.transform.position;
 
     }
