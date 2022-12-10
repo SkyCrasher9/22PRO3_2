@@ -10,6 +10,8 @@ public class Patrol_Thief : StateMachineBehaviour
     
     public Transform[] PatrolPoints;
 
+    public GameObject PlayerObjetivo;
+
     public Transform Target;
 
     private int NextPoint = 0;
@@ -43,11 +45,13 @@ public class Patrol_Thief : StateMachineBehaviour
 
         RaycastHit hit; //Declaración de la variable hit del Raycast
 
-        if (Physics.Raycast(ray, out hit, 5.0f))
+        if (Physics.Raycast(ray, out hit, 8.0f))
         {
             if (hit.transform.tag == "Player")
             {
                 animator.SetTrigger("PlayerDetected");
+                PlayerObjetivo = hit.collider.gameObject;
+                Debug.Log("Ir al jugador");
             }
         }
     }

@@ -9,19 +9,27 @@ public class Follow_Player_Thief : StateMachineBehaviour
     public Transform Player;
     public float Follow_PlayerWait;
     public static float speed = 5f;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Thief_Agent = animator.gameObject.GetComponent<NavMeshAgent>();
-        Thief_Agent.speed = 0f;
-        GoToPlayer();
+        //Thief_Agent.speed = 0f;
+       // GoToPlayer();
     }
    
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GoToPlayer();
-        FollowTime(animator);
+        Thief_Agent.SetDestination(animator.GetBehaviour<Patrol_Thief>().PlayerObjetivo.gameObject.transform.position);
+        if (!Thief_Agent.pathPending && Thief_Agent.remainingDistance <= 2.0f)
+        {
+            animator.SetTrigger("Attack");
+            Debug.Log("Atacando a Player");
+            //animator.gameObject.GetComponent<Agent>().Objects = 0;
+        }
+        //GoToPlayer();
+        //FollowTime(animator);
         /*if(!Thief_Agent.pathPending && Thief_Agent.remainingDistance < 0.5f)
         {
             Thief_Agent.speed = 0;
