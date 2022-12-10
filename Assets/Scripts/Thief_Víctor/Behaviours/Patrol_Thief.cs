@@ -35,6 +35,21 @@ public class Patrol_Thief : StateMachineBehaviour
         if (Thief_Agent.remainingDistance < 0.5f)
             GotoNextPoint();
         IdleTime2(animator);
+
+        Ray ray = new Ray(Thief_Agent.gameObject.transform.position, Thief_Agent.gameObject.transform.forward);
+
+        //El rayo emitido tomara la posición del agente y se creara delante de él
+        Debug.DrawRay(Thief_Agent.gameObject.transform.position, Thief_Agent.gameObject.transform.forward, Color.red);
+
+        RaycastHit hit; //Declaración de la variable hit del Raycast
+
+        if (Physics.Raycast(ray, out hit, 5.0f))
+        {
+            if (hit.transform.tag == "Player")
+            {
+                animator.SetTrigger("PlayerDetected");
+            }
+        }
     }
     public void GotoNextPoint()
     {    //Manda al agante volver al inicio si no hay más puntos de ruta indicados                   
