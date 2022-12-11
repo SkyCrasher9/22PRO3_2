@@ -26,7 +26,7 @@ public class Follow_Player_Thief : StateMachineBehaviour
         {
             animator.SetTrigger("Attack");
             Debug.Log("Atacando a Player");
-            //animator.gameObject.GetComponent<Agent>().Objects = 0;
+           
         }
         //GoToPlayer();
         //FollowTime(animator);

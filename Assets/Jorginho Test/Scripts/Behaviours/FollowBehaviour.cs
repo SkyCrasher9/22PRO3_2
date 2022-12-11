@@ -11,7 +11,7 @@ public class FollowBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = animator.GetComponent<VariableContainer>().player;
+       // player = animator.GetComponent<VariableContainer>().player;
         agent= animator.GetComponent<NavMeshAgent>();
 
         agent.destination = player.transform.position;

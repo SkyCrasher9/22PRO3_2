@@ -14,6 +14,7 @@ public class Combat_Thief : StateMachineBehaviour
     {
         Thief_Agent = animator.gameObject.GetComponent<NavMeshAgent>();
         Thief_Agent.speed = 0f;
+        Combatiendo = 0F;
         Atacar(animator);
     }
     public void Atacar (Animator animator)
@@ -24,6 +25,7 @@ public class Combat_Thief : StateMachineBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 8.0f))
         {
+            hit.collider.GetComponent<Player_de_prueba>().ChangeCubeColor();
             CombatTimer(animator);
         }
     }
