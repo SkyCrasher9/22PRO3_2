@@ -3,37 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FollowBehaviour : StateMachineBehaviour
+public class IddleBehaviour : StateMachineBehaviour
 {
-    public GameObject player;
+    PandilleroController controller;
     NavMeshAgent agent;
+    public Transform basePoint;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = animator.GetComponent<VariableContainer>().player;
-        agent= animator.GetComponent<NavMeshAgent>();
+        controller = animator.GetComponent<PandilleroController>();
+        agent = animator.GetComponent<NavMeshAgent>();
+        basePoint = animator.GetComponent<PandilleroController>().startPoint;
 
-        agent.destination = player.transform.position;
+        agent.destination = basePoint.position;
+
+        controller.RigidBodyEnable();
+
+        if (agent.destination == basePoint.position )
+        {
+            agent.speed = 0f;
+        }
+
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        agent.destination = player.transform.position;
-
-        if(agent.remainingDistance > 1)
-        {
-            Debug.Log("Attack");
-            animator.SetTrigger("ToAttack");
-        }
+        
     }
 
+    
+
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        agent.speed = 5f;
+
+        controller.RigidBodyDinable();
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

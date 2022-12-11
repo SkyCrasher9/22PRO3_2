@@ -1,33 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class FollowBehaviour : StateMachineBehaviour
+public class DieBehaviour : StateMachineBehaviour
 {
-    public GameObject player;
-    NavMeshAgent agent;
-
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = animator.GetComponent<VariableContainer>().player;
-        agent= animator.GetComponent<NavMeshAgent>();
-
-        agent.destination = player.transform.position;
+        Debug.Log("me mori :(");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        agent.destination = player.transform.position;
-
-        if(agent.remainingDistance > 1)
-        {
-            Debug.Log("Attack");
-            animator.SetTrigger("ToAttack");
-        }
-    }
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

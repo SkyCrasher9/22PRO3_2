@@ -17,9 +17,9 @@ public class PatrolBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        wayPoints = animator.GetComponent<VariableContainer>().wayPoints;
+        wayPoints = animator.GetComponent<PandilleroController>().wayPoints;
 
-        PatrolPointMovement();
+        PatrolControler();
 
         target = wayPoints[destPoint];
 
@@ -33,18 +33,19 @@ public class PatrolBehaviour : StateMachineBehaviour
     {
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
-            PatrolPointMovement();
+            PatrolControler();
             agent.destination = target.transform.position;
         }
 
         time += Time.deltaTime;
 
-        if (time > 15)
+        if (time > 45)
         {
             time = 0;
             animator.SetTrigger("ToIddle");
         }
 
+        RayCastDetect(animator);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
@@ -53,7 +54,7 @@ public class PatrolBehaviour : StateMachineBehaviour
     //    
     //}
 
-    public void PatrolPointMovement()
+    public void PatrolControler()
     {
         // Si no hay ningún punto se hace un return
         if (wayPoints.Length == 0)
@@ -62,9 +63,31 @@ public class PatrolBehaviour : StateMachineBehaviour
         // El transform de target pasa a ser el valor de dentro del array de patrolPoints y el numero dentro de este array es el valor de destPoint
         target = wayPoints[destPoint];
 
-        agent.destination = target.transform.position;
-
         destPoint = (destPoint + 1) % wayPoints.Length;
+    }
+
+    public void RayCastDetect(Animator animator)
+    {
+        RaycastHit hit;
+
+        if(Physics.Raycast(animator.transform.position, animator.transform.TransformDirection(Vector3.forward), out hit, 5.0f))
+        {
+            Debug.DrawRay(this.agent.transform.position + new Vector3(0, 0.3f, 0), this.agent.transform.TransformDirection(Vector3.forward) * 5.0f, Color.green);
+
+            if(hit.collider.CompareTag("Player"))
+            {
+                Debug.Log("Player");
+                animator.SetTrigger("ToFollow");
+            }
+            else if(hit.collider.CompareTag("Enemy"))
+            {
+                Debug.Log("Pana");
+            }
+        }
+        else
+        {
+            Debug.DrawRay(this.agent.transform.position + new Vector3(0, 0.3f, 0), this.agent.transform.TransformDirection(Vector3.forward) * 5.0f, Color.red);
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

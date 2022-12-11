@@ -3,38 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class IdleBehaviour : StateMachineBehaviour
+public class HitBehaviour : StateMachineBehaviour
 {
     NavMeshAgent agent;
-    public Transform basePoint;
+    public int hitCounter = 0;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        basePoint = animator.GetComponent<VariableContainer>().startPoint;
+        agent.speed = 0;
 
-        agent.destination = basePoint.position;
+        hitCounter++;
 
-        if (agent.destination == basePoint.position )
+        if(hitCounter > 3) 
         {
-            agent.speed = 0f;
+            animator.SetTrigger("ToDie");
+        }
+        else
+        {
+            animator.SetTrigger("ToPatrol");
         }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        
-    }
-
-    
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        agent.speed = 5f;
-    }
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
