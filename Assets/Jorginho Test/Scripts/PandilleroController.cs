@@ -49,4 +49,25 @@ public class PandilleroController : MonoBehaviour
         rb.detectCollisions = false;
         Debug.Log("off");
     }
+
+    public void ComboAttack1()
+    {
+        Debug.Log("attack1");
+    }
+
+    public void ComboAttack2()
+    {
+        Debug.Log("attack2");
+    }
+
+    public void ComboAttack3()
+    {
+        Debug.Log("lastattack");
+    }
+
+    public void ChargedAttack()
+    {
+        Debug.Log("ChargedAttack");
+    }
+
 }

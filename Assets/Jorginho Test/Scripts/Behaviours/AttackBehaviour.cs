@@ -8,6 +8,8 @@ public class AttackBehaviour : StateMachineBehaviour
     public GameObject player;
     NavMeshAgent agent;
 
+    PandilleroController controller;
+
     int attackSelector;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -24,27 +26,9 @@ public class AttackBehaviour : StateMachineBehaviour
         }
         else if (attackSelector == 2) 
         {
-            ChargedAttack();
+            controller.ChargedAttack();
         }
         agent.destination = player.transform.position;
-    }
-
-    public void ComboAttack()
-    {
-        Debug.Log("attack1");
-        if (agent.remainingDistance < 1)
-        {
-            Debug.Log("attack2");
-            if (agent.remainingDistance < 1)
-            {
-                Debug.Log("lastattack");
-            }
-        }
-    }
-
-    public void ChargedAttack() 
-    {
-        Debug.Log("ChargedAttack");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -60,7 +44,7 @@ public class AttackBehaviour : StateMachineBehaviour
             }
             else if (attackSelector == 2)
             {
-                ChargedAttack();
+                controller.ChargedAttack();
             }
         }
         else if (agent.remainingDistance <= 3)
@@ -77,6 +61,23 @@ public class AttackBehaviour : StateMachineBehaviour
         }
 
     }
+
+    public void ComboAttack()
+    {
+        controller.ComboAttack1();
+        
+        if (agent.remainingDistance < 1)
+        {
+            controller.ComboAttack2();
+            
+            if (agent.remainingDistance < 1)
+            {
+                controller.ComboAttack3();
+                
+            }
+        }
+    }
+
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
