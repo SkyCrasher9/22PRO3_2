@@ -14,6 +14,7 @@ public class Death_Thief : StateMachineBehaviour
         Thief_Agent = animator.gameObject.GetComponent<NavMeshAgent>();
         Thief_Agent.speed = 0f;
         Thief_Agent.enabled = false;
+        animator.SetTrigger("IsReallyDead");
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

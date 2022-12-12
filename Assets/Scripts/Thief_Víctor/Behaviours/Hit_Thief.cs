@@ -19,24 +19,24 @@ public class Hit_Thief : StateMachineBehaviour
         Thief_Agent.speed = 0f;
         NowStunned = 0f;
         Debug.Log("Ladrón Aturdido");
+        RecibirDaño();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         StunnedTime(animator);
-        {
-            if (PuntosdeDaño >= 3)
-            {
-                Debug.Log("Ladrón Muerto");
-                animator.SetTrigger("IsDead");
 
-            }
-            else if (PuntosdeDaño < 3)
-            {
-                Debug.Log("Ladrón No Muerto");
-                animator.SetTrigger("ReturnCombat");
-            }
+        if (PuntosdeDaño >= 3)
+        {
+            Debug.Log("Ladrón Muerto");
+            animator.SetTrigger("IsDead");
+
+        }
+        else if (PuntosdeDaño < 3)
+        {
+            Debug.Log("Ladrón No Muerto");
+            animator.SetTrigger("ReturnCombat");
         }
     }
     public void StunnedTime(Animator animator)

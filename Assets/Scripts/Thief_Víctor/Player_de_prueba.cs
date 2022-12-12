@@ -59,9 +59,8 @@ public class Player_de_prueba : MonoBehaviour
             if (hit.collider.tag == "Thief")
             {
                 Debug.Log("RAYCAST JUGADOR");
-                
-                
-                //hit.collider.GetComponent<Animator>().SetTrigger("BeigHit");
+                             
+               hit.collider.GetComponent<Animator>().SetTrigger("BeingHit");
 
             }
         }
