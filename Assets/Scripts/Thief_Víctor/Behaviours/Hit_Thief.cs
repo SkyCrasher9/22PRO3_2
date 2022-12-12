@@ -17,6 +17,7 @@ public class Hit_Thief : StateMachineBehaviour
     {
         Thief_Agent = animator.gameObject.GetComponent<NavMeshAgent>();
         Thief_Agent.speed = 0f;
+        NowStunned = 0f;
         Debug.Log("Ladrón Aturdido");
     }
 

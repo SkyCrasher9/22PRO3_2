@@ -7,7 +7,7 @@ public class Follow_Player_Thief : StateMachineBehaviour
 {
     public NavMeshAgent Thief_Agent;
     public Transform Player;
-    public float Follow_PlayerWait;
+    //public float Follow_PlayerWait;
     public static float speed = 5f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -15,7 +15,7 @@ public class Follow_Player_Thief : StateMachineBehaviour
     {
         Thief_Agent = animator.gameObject.GetComponent<NavMeshAgent>();
         //Thief_Agent.speed = 0f;
-       // GoToPlayer();
+        //GoToPlayer();
     }
    
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -42,7 +42,7 @@ public class Follow_Player_Thief : StateMachineBehaviour
         }
         */
     }
-    public void GoToPlayer()
+    /*public void GoToPlayer()
     {
         Thief_Agent.destination = Player.position;
 
@@ -51,12 +51,12 @@ public class Follow_Player_Thief : StateMachineBehaviour
     {
         Follow_PlayerWait += Time.deltaTime;
 
-        if (Follow_PlayerWait > 5)
+        if (Follow_PlayerWait >= 5)
         {
             animator.SetTrigger("ThiefCombat");
         }
     }
-
+    */
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{

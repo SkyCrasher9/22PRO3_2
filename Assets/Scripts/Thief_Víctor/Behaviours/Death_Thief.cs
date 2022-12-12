@@ -7,10 +7,13 @@ public class Death_Thief : StateMachineBehaviour
 {
     public NavMeshAgent Thief_Agent;
     public int PuntosdeDaño;
+    public static float speed = 5f;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Thief_Agent = animator.gameObject.GetComponent<NavMeshAgent>();
+        Thief_Agent.speed = 0f;
+        Thief_Agent.enabled = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

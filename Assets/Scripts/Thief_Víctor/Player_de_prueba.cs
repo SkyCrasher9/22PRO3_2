@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Player_de_prueba : MonoBehaviour
 {
-    public NavMeshAgent PlayerTest;
+    //public NavMeshAgent PlayerTest;
     public GameObject cube;
     public Renderer cubeRenderer;
     private Color newCubeColor;
@@ -18,7 +18,7 @@ public class Player_de_prueba : MonoBehaviour
     
     public float speed;
     public float movementX;
-    public float movementY;
+    //public float movementY;
 
     private CharacterController controller;
     
@@ -46,27 +46,23 @@ public class Player_de_prueba : MonoBehaviour
         cubeRenderer.material.SetColor("_BaseColor", newCubeColor);
         print("Golpe RECIBIDO");
     }
-    public void LadronGolpeado(Animator animator)
-    {
-        animator.SetTrigger("BeigHit");
-    }
+   
     // Update is called once per frame
     void Update()
     {
-
-        Ray ray = new Ray(PlayerTest.gameObject.transform.position, PlayerTest.gameObject.transform.forward);
-        Debug.DrawRay(PlayerTest.gameObject.transform.position, PlayerTest.gameObject.transform.forward, Color.red);
+        Ray ray = new Ray(rb.gameObject.transform.position, rb.gameObject.transform.forward);
+        Debug.DrawRay(rb.gameObject.transform.position, rb.gameObject.transform.forward, Color.red);
         RaycastHit hit; 
 
-        if (Physics.Raycast(ray, out hit, 2.0f))
+        if (Physics.Raycast(ray, out hit, 5.0f))
         {
             if (hit.collider.tag == "Thief")
             {
-                //animator.SetTrigger("PlayerDetected");
-                //PlayerObjetivo = hit.collider.gameObject;
                 Debug.Log("RAYCAST JUGADOR");
-               // LadronGolpeado(animator);
-                //Animator.SetTrigger("BeingHit");
+                
+                
+                //hit.collider.GetComponent<Animator>().SetTrigger("BeigHit");
+
             }
         }
 

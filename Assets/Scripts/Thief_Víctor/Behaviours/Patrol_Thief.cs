@@ -6,8 +6,7 @@ using UnityEngine.AI;
 public class Patrol_Thief : StateMachineBehaviour
 {
     public NavMeshAgent Thief_Agent;
-
-    
+   
     public Transform[] PatrolPoints;
 
     public GameObject PlayerObjetivo;
@@ -25,7 +24,6 @@ public class Patrol_Thief : StateMachineBehaviour
         Thief_Agent = animator.gameObject.GetComponent<NavMeshAgent>();
 
         PatrolPoints = animator.gameObject.GetComponent<Agent_Thief>().PatrolPoints;
-       // PatrolPoints = animator.gameObject.GetComponent<Thief_Agent>.PatrolPoints;
        
         GotoNextPoint();
     }
@@ -33,7 +31,7 @@ public class Patrol_Thief : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Thief_Agent.destination = PatrolPoints[NextPoint].gameObject.transform.position;
+        //Thief_Agent.destination = PatrolPoints[NextPoint].gameObject.transform.position;
         if (Thief_Agent.remainingDistance < 0.5f)
             GotoNextPoint();
         IdleTime2(animator);
@@ -45,14 +43,18 @@ public class Patrol_Thief : StateMachineBehaviour
 
         RaycastHit hit; //Declaración de la variable hit del Raycast
 
-        if (Physics.Raycast(ray, out hit, 8.0f))
+        if (Physics.Raycast(ray, out hit, 5.0f))
         {
-            if (hit.transform.tag == "Player")
+            if (hit.collider.tag == "Player")
             {
-                animator.SetTrigger("PlayerDetected");
+                Debug.Log("PLAYER DETECTADO");
                 PlayerObjetivo = hit.collider.gameObject;
+                animator.SetTrigger("PlayerDetected");
+
                 Debug.Log("Ir al jugador");
             }
+            
+           
         }
     }
     public void GotoNextPoint()
@@ -78,7 +80,7 @@ public class Patrol_Thief : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        IdleReturn = 0;
+        IdleReturn = 0f;
     }
     
     // OnStateMove is called right after Animator.OnAnimatorMove()
