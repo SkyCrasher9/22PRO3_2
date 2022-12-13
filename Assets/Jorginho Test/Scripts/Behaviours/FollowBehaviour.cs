@@ -12,9 +12,7 @@ public class FollowBehaviour : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        player = animator.GetComponent<PandilleroController>().player;
-
-       // player = animator.GetComponent<VariableContainer>().player;
+        player = GameObject.FindGameObjectWithTag("Player");
         agent= animator.GetComponent<NavMeshAgent>();
 
         agent.destination = player.transform.position;
@@ -29,6 +27,11 @@ public class FollowBehaviour : StateMachineBehaviour
         {
             Debug.Log("Attack");
             animator.SetTrigger("ToAttack");
+        }
+        if (agent.remainingDistance > 10)
+        {
+            Debug.Log("Back to patrol");
+            animator.SetTrigger("ToPatrol");
         }
     }
 

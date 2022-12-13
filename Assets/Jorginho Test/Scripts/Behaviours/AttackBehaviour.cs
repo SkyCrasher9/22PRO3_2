@@ -17,6 +17,7 @@ public class AttackBehaviour : StateMachineBehaviour
     {
         player = animator.GetComponent<PandilleroController>().player;
         agent = animator.GetComponent<NavMeshAgent>();
+        controller = animator.GetComponent<PandilleroController>();
 
         attackSelector = Random.Range(1, 2);
 
