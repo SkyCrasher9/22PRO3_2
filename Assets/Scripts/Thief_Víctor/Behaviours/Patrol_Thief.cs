@@ -47,11 +47,11 @@ public class Patrol_Thief : StateMachineBehaviour
         {
             if (hit.collider.tag == "Player")
             {
-                Debug.Log("PLAYER DETECTADO");
+                //Debug.Log("PLAYER DETECTADO");
                 PlayerObjetivo = hit.collider.gameObject;
                 animator.SetTrigger("PlayerDetected");
 
-                Debug.Log("Ir al jugador");
+                //Debug.Log("Ir al jugador");
             }
             
            

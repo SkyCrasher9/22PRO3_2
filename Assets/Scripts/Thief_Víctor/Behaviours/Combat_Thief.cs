@@ -15,7 +15,7 @@ public class Combat_Thief : StateMachineBehaviour
         Thief_Agent = animator.gameObject.GetComponent<NavMeshAgent>();
         Player = animator.gameObject.GetComponent<Player_de_prueba>();  
         Thief_Agent.speed = 0f;
-        Combatiendo = 0F;
+        //Combatiendo = 0F;
         Atacar(animator);
     }
     public void Atacar (Animator animator)
@@ -26,22 +26,57 @@ public class Combat_Thief : StateMachineBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 2.0f))
         {
+            Debug.Log("Ataque 1");
             hit.collider.GetComponent<Player_de_prueba>().ChangeCubeColor();
+
             CombatTimer(animator);
+            if(Thief_Agent.remainingDistance <= 2.0f) 
+            {
+                Debug.Log("Ataque 2");
+                hit.collider.GetComponent<Player_de_prueba>().ChangeCubeColor();
+
+                CombatTimer(animator);
+                if (Thief_Agent.remainingDistance <= 2.0f)
+                {
+                    Debug.Log("Ataque 3");
+                    hit.collider.GetComponent<Player_de_prueba>().ChangeCubeColor();
+                    CombatTimer(animator);
+                   
+                }
+                else if (Thief_Agent.remainingDistance > 2.0f)
+                {
+                    animator.SetTrigger("PerseguirPlayer");
+                }
+            }
+            else if(Thief_Agent.remainingDistance > 2.0f)
+            {
+                animator.SetTrigger("PerseguirPlayer");
+            }
+            //CombatTimer(animator);
+            //pONER UN TIEMPO 2 SEGS entre cada golpe
         }
+        else if (Thief_Agent.remainingDistance > 2.0f)
+        {
+            animator.SetTrigger("PerseguirPlayer");
+        }
+    }
+    public void AtaqueCombo()
+    {
+
     }
     public void CombatTimer(Animator animator)
     {
         Combatiendo += Time.deltaTime;
-        if (Combatiendo >= 5)
+        if (Combatiendo >= 2)
         {
-            animator.SetTrigger("StartIdle");
+            //animator.SetTrigger("StartIdle");
         }
     }
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         CombatTimer(animator);
+        Atacar(animator);
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

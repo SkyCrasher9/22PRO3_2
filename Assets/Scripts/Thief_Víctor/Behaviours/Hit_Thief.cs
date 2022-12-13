@@ -25,18 +25,20 @@ public class Hit_Thief : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        StunnedTime(animator);
-
+        //StunnedTime(animator);
+        
         if (PuntosdeDaño >= 3)
         {
             Debug.Log("Ladrón Muerto");
-            animator.SetTrigger("IsDead");
+            animator.SetTrigger("IsReallyDead");
+            Thief_Agent.gameObject.SetActive(false);
 
         }
         else if (PuntosdeDaño < 3)
         {
             Debug.Log("Ladrón No Muerto");
             animator.SetTrigger("ReturnCombat");
+            Thief_Agent.gameObject.SetActive(true);
         }
     }
     public void StunnedTime(Animator animator)

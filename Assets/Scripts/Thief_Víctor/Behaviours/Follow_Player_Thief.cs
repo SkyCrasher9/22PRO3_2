@@ -7,7 +7,7 @@ public class Follow_Player_Thief : StateMachineBehaviour
 {
     public NavMeshAgent Thief_Agent;
     public Transform Player;
-    //public float Follow_PlayerWait;
+    public float Follow_PlayerWait;
     public static float speed = 5f;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -24,39 +24,30 @@ public class Follow_Player_Thief : StateMachineBehaviour
         Thief_Agent.SetDestination(animator.GetBehaviour<Patrol_Thief>().PlayerObjetivo.gameObject.transform.position);
         if (!Thief_Agent.pathPending && Thief_Agent.remainingDistance <= 2.0f)
         {
+            FollowTime(animator);
             animator.SetTrigger("Attack");
-            Debug.Log("Atacando a Player");
+           // Debug.Log("Atacando a Player");
            
         }
-        //GoToPlayer();
-        //FollowTime(animator);
-        /*if(!Thief_Agent.pathPending && Thief_Agent.remainingDistance < 0.5f)
-        {
-            Thief_Agent.speed = 0;
-            //animator.SetTrigger("ThiefCombat");
-            /*if (Thief_Agent.remainingDistance< 2f)
-            {
-                animator.SetTrigger("PlayerLost");
-            }
-            
+        
+        if(!Thief_Agent.pathPending && Thief_Agent.remainingDistance < 2.5f)
+        {  
+            animator.SetTrigger("PlayerLost"); 
         }
-        */
+        
     }
-    /*public void GoToPlayer()
-    {
-        Thief_Agent.destination = Player.position;
-
-    }
-   public void FollowTime(Animator animator)
+    public void FollowTime(Animator animator)
     {
         Follow_PlayerWait += Time.deltaTime;
 
-        if (Follow_PlayerWait >= 5)
+        if (Follow_PlayerWait >= 2)
         {
             animator.SetTrigger("ThiefCombat");
         }
     }
-    */
+    
+
+
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
