@@ -61,7 +61,7 @@ public class TargetLock : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            //input.RotateTowards(target);
+            input.RotateTowards(target);
             //input.canMove = false;
         }
     }
