@@ -15,8 +15,6 @@ public class AngelFollowBehaviour : StateMachineBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-       
-
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
 
