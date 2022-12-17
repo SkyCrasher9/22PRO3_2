@@ -22,9 +22,9 @@ public class Follow_Player_Thief : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Thief_Agent.SetDestination(animator.GetBehaviour<Patrol_Thief>().PlayerObjetivo.gameObject.transform.position);
-        if (!Thief_Agent.pathPending && Thief_Agent.remainingDistance <= 2.0f)
+        if (!Thief_Agent.pathPending && Thief_Agent.remainingDistance <= 7.0f)
         {
-            FollowTime(animator);
+            //FollowTime(animator);
             animator.SetTrigger("Attack");
            // Debug.Log("Atacando a Player");
            
@@ -36,15 +36,16 @@ public class Follow_Player_Thief : StateMachineBehaviour
         }
         
     }
-    public void FollowTime(Animator animator)
+   /* public void FollowTime(Animator animator)
     {
         Follow_PlayerWait += Time.deltaTime;
 
         if (Follow_PlayerWait >= 2)
         {
-            animator.SetTrigger("ThiefCombat");
+            animator.SetTrigger("ThiefCombat"); 
+            //TRIGGER QUE NO EXISTE
         }
-    }
+    }*/
     
 
 

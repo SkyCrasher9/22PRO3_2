@@ -282,67 +282,61 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: BeingHit
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: ReturnCombat
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: StartPatrol
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: StopPatrol
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: PlayerLost
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: PerseguirPlayer
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: Attack
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: StartIdle
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: IsDead
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: IsReallyDead
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -610,7 +604,7 @@ AnimatorStateMachine:
     m_Position: {x: 30, y: 260, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4369699521842630695}
-    m_Position: {x: 80, y: 490, z: 0}
+    m_Position: {x: 310, y: 360, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 6317400543947921741}
