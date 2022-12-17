@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PandilleroController : MonoBehaviour
@@ -12,9 +13,24 @@ public class PandilleroController : MonoBehaviour
     public GameObject player;
     public GameObject[] enemyNumber;
 
-    public Color color;
-    public Renderer playerRenderer;
-    public Renderer enemyRenderer; 
+    public int hitCounter;
+
+    float timeMakeDamage;
+    float timeBeDamaged;
+
+    bool canReceiveDmg;
+    bool canMakeDmg;
+
+    private void Awake()
+    {
+        //todas las variables se resetean
+        hitCounter = 0;
+        timeBeDamaged= 0;
+        timeMakeDamage= 0;
+        canMakeDmg= false;
+        canReceiveDmg= false;
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,12 +38,31 @@ public class PandilleroController : MonoBehaviour
         rb= GetComponent<Rigidbody>();
         enemyNumber = GameObject.FindGameObjectsWithTag("Enemy");
         player = GameObject.FindGameObjectWithTag("Player");
+   
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        
+        timeBeDamaged += Time.deltaTime;
+        timeMakeDamage += Time.deltaTime;
+        if(timeMakeDamage >= 2)
+        {
+            canReceiveDmg = true;
+        }
+        if (timeMakeDamage >= 2)
+        {
+            canMakeDmg = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.collider.CompareTag("Player"))
+        {
+            this.GetComponent<Animator>().SetTrigger("ToHit");
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -38,72 +73,95 @@ public class PandilleroController : MonoBehaviour
             for (int i = 0; i < enemyNumber.Length; i++)
             {
                 enemyNumber[i].GetComponent<Animator>().SetTrigger("ToPatrol");
-            }           
+            }
         }
     }
 
     public void RigidBodyEnable()
     {
-        rb.detectCollisions = true;
         Debug.Log("on");
+        rb.detectCollisions = true;
+
     }
 
-    public void RigidBodyDinable()
+    public void RigidBodyDisable()
     {
-        rb.detectCollisions = false;
         Debug.Log("off");
+        rb.detectCollisions = false;
+    }
+
+    public void CallForHelp()
+    {
+        for (int i = 0; i < enemyNumber.Length; i++)
+        {
+            Debug.Log("Ayuda");
+            enemyNumber[i].GetComponent<Animator>().SetTrigger("ToFollow");
+        }
     }
 
     public void ComboAttack1()
     {
-        Debug.Log("attack1");
-        DamagePlayer();
+        if (canMakeDmg == true)
+        {
+            Debug.Log("attack1");
+            DamagePlayer();
+            canMakeDmg = false;
+            timeMakeDamage = 0;
+            new WaitForSeconds(0.5f);
+        }
     }
 
     public void ComboAttack2()
     {
-        Debug.Log("attack2");
-        DamagePlayer();
+        if (canMakeDmg == true)
+        {
+            Debug.Log("attack2");
+            DamagePlayer();
+            canMakeDmg = false;
+            timeBeDamaged = 0;
+            new WaitForSeconds(0.5f);
+        }
     }
 
     public void ComboAttack3()
     {
-        Debug.Log("lastattack");
-        DamagePlayer();
+        if (canMakeDmg == true)
+        {
+            Debug.Log("final attack");
+            DamagePlayer();
+            canMakeDmg = false;
+            timeMakeDamage = 0;
+        }
+        new WaitForSeconds(0.5f);
     }
 
     public void ChargedAttack()
     {
-        Debug.Log("ChargedAttack");
-        DamagePlayer();
+        if (canMakeDmg == true)
+        {
+            Debug.Log("ChargedAttack");
+            DamagePlayer();
+            canMakeDmg = false;
+            timeMakeDamage = 0;
+        }
+        new WaitForSeconds(0.5f);
     }
 
     public void DamagePlayer()
     {
-        color = Color.red;
-
-        playerRenderer.material.SetColor("Rojo", color);
+        Debug.Log("daño al jugador");
         
-        PlayerHitJump();
+       
     }
 
     public void ReceiveDamage()
     {
-        color = Color.red;
-
-        enemyRenderer.material.SetColor("Rojo", color);
-
-        HitJump();
-    }
-
-
-    private void PlayerHitJump()
-    {
-        player.GetComponent<Rigidbody>().AddForce(Vector3.up * 1f);
-    }
-
-    private void HitJump()
-    {
-        player.GetComponent<Rigidbody>().AddForce(Vector3.up * 1f);
+        if(canReceiveDmg == true)
+        {
+            hitCounter++;
+            Debug.Log("daño recibido");
+            canReceiveDmg= false;
+            timeBeDamaged = 0;
+        }          
     }
 }

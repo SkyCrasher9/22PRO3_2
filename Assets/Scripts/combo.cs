@@ -35,7 +35,10 @@ public class combo : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) { Iniciar_combo();}
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            Iniciar_combo();
+        }
 
     }
 

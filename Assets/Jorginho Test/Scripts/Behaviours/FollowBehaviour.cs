@@ -25,12 +25,10 @@ public class FollowBehaviour : StateMachineBehaviour
 
         if(agent.remainingDistance > 1)
         {
-            Debug.Log("Attack");
             animator.SetTrigger("ToAttack");
         }
         if (agent.remainingDistance > 10)
         {
-            Debug.Log("Back to patrol");
             animator.SetTrigger("ToPatrol");
         }
     }

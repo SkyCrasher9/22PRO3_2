@@ -9,6 +9,7 @@ public class DieBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Debug.Log("me mori :(");
+        Destroy(this);
         
     }
 

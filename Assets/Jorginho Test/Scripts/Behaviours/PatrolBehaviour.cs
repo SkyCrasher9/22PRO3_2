@@ -76,12 +76,11 @@ public class PatrolBehaviour : StateMachineBehaviour
 
             if(hit.collider.CompareTag("Player"))
             {
-                Debug.Log("Player");
                 animator.SetTrigger("ToFollow");
             }
             else if(hit.collider.CompareTag("Enemy"))
             {
-                Debug.Log("Pana");
+                Debug.Log("Friend");
             }
         }
         else

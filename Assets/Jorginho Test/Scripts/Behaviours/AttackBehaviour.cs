@@ -12,6 +12,8 @@ public class AttackBehaviour : StateMachineBehaviour
 
     int attackSelector;
 
+    public float time;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -24,10 +26,12 @@ public class AttackBehaviour : StateMachineBehaviour
         if(attackSelector == 1)
         {
             ComboAttack();
+            time = 0;
         }
         else if (attackSelector == 2) 
         {
             controller.ChargedAttack();
+            time = 0;
         }
         agent.destination = player.transform.position;
     }
@@ -35,7 +39,9 @@ public class AttackBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (agent.remainingDistance < 1)
+        time+= Time.deltaTime;
+
+        if (agent.remainingDistance < 1 && time > 2f)
         {
             attackSelector = Random.Range(1, 2);
 
@@ -66,15 +72,18 @@ public class AttackBehaviour : StateMachineBehaviour
     public void ComboAttack()
     {
         controller.ComboAttack1();
+        time = 0;
         
-        if (agent.remainingDistance < 1)
+        if (agent.remainingDistance < 1 && time > 2f)
         {
             controller.ComboAttack2();
-            
-            if (agent.remainingDistance < 1)
+            time = 0;
+
+            if (agent.remainingDistance < 1 && time > 2f)
             {
                 controller.ComboAttack3();
-                
+                time = 0;
+
             }
         }
     }
