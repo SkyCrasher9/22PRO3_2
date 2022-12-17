@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class AngelAttackTrindetBehaviour : StateMachineBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Transform player;
+
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+
+
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         
+
+
     }
 }

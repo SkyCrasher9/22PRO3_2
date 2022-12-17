@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class Angel : MonoBehaviour
 {
+    //Variable para almacenar al objetivo al que se ha de dirigir, en este caso JC.
+    public Transform Target;
+
+    //variable donde se almacena a quien a detectado en su rango
+    public GameObject detected;
+
+    public Transform[] PatrolPoints;
+
+    //Variable de los golpes de vida del Angel.
+    public int lifeHits = 7;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,6 +25,11 @@ public class Angel : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        
+    }
+
+    public void Attack()
     {
         
     }
