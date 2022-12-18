@@ -5,16 +5,13 @@ using UnityEngine.AI;
 
 public class Agent_Thief : MonoBehaviour
 {
-    public Transform Target;
+    public Transform Target; //El objetivo al que se dirigira el Thief
 
-    public NavMeshAgent Thief_Agent;
+    public NavMeshAgent Thief_Agent; 
 
-    public Transform[] PatrolPoints;
-
-    public float Combatiendo2; 
-    //public GameObject[] PatrolPoints;
-
-    public static float speed = 5f;
+    public Transform[] PatrolPoints; //Puntos de patrulla del Thief
+    
+    public static float speed = 5f; //Velocidad inicial del Thief
     // Start is called before the first frame update
     void Start()
     {
