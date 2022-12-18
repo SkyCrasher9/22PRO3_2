@@ -47,11 +47,11 @@ public class PandilleroController : MonoBehaviour
     {
         timeBeDamaged += Time.deltaTime;
         timeMakeDamage += Time.deltaTime;
-        if(timeMakeDamage >= 2)
+        if(timeMakeDamage >= 0.2f)
         {
             canReceiveDmg = true;
         }
-        if (timeMakeDamage >= 2)
+        if (timeMakeDamage >= 0.2f)
         {
             canMakeDmg = true;
         }
@@ -99,40 +99,43 @@ public class PandilleroController : MonoBehaviour
         }
     }
 
-    public void ComboAttack1()
+    public void Combo()
     {
+        ComboAttack1();
+
         if (canMakeDmg == true)
         {
-            Debug.Log("attack1");
-            DamagePlayer();
-            canMakeDmg = false;
-            timeMakeDamage = 0;
-            new WaitForSeconds(0.5f);
+            ComboAttack2();
+
+            if (canMakeDmg == true)
+            {
+                ComboAttack3();
+            }
         }
+    }
+
+    public void ComboAttack1()
+    {
+        Debug.Log("attack1");
+        DamagePlayer();
+        canMakeDmg = false;
+        timeMakeDamage = 0;
     }
 
     public void ComboAttack2()
     {
-        if (canMakeDmg == true)
-        {
-            Debug.Log("attack2");
-            DamagePlayer();
-            canMakeDmg = false;
-            timeBeDamaged = 0;
-            new WaitForSeconds(0.5f);
-        }
+        Debug.Log("attack2");
+        DamagePlayer();
+        canMakeDmg = false;
+        timeBeDamaged = 0;
     }
 
     public void ComboAttack3()
     {
-        if (canMakeDmg == true)
-        {
-            Debug.Log("final attack");
-            DamagePlayer();
-            canMakeDmg = false;
-            timeMakeDamage = 0;
-        }
-        new WaitForSeconds(0.5f);
+        Debug.Log("final attack");
+        DamagePlayer();
+        canMakeDmg = false;
+        timeMakeDamage = 0;
     }
 
     public void ChargedAttack()
@@ -144,7 +147,6 @@ public class PandilleroController : MonoBehaviour
             canMakeDmg = false;
             timeMakeDamage = 0;
         }
-        new WaitForSeconds(0.5f);
     }
 
     public void DamagePlayer()

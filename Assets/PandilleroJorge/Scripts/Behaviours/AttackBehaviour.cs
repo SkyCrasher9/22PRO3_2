@@ -12,7 +12,6 @@ public class AttackBehaviour : StateMachineBehaviour
 
     int attackSelector;
 
-    public float time;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -25,13 +24,11 @@ public class AttackBehaviour : StateMachineBehaviour
 
         if(attackSelector == 1)
         {
-            ComboAttack();
-            time = 0;
+            controller.Combo();
         }
         else if (attackSelector == 2) 
         {
             controller.ChargedAttack();
-            time = 0;
         }
         agent.destination = player.transform.position;
     }
@@ -39,22 +36,21 @@ public class AttackBehaviour : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        time+= Time.deltaTime;
 
-        if (agent.remainingDistance < 1 && time > 2f)
+        if (agent.remainingDistance < 2f)
         {
             attackSelector = Random.Range(1, 2);
 
             if (attackSelector == 1)
             {
-                ComboAttack();
+                controller.Combo();
             }
             else if (attackSelector == 2)
             {
                 controller.ChargedAttack();
             }
         }
-        else if (agent.remainingDistance <= 3)
+        else if (agent.remainingDistance >= 3)
         {
             animator.SetTrigger("ToFollow");
         }
@@ -67,25 +63,6 @@ public class AttackBehaviour : StateMachineBehaviour
             animator.SetTrigger("ToPatrol");
         }
 
-    }
-
-    public void ComboAttack()
-    {
-        controller.ComboAttack1();
-        time = 0;
-        
-        if (agent.remainingDistance < 1 && time > 2f)
-        {
-            controller.ComboAttack2();
-            time = 0;
-
-            if (agent.remainingDistance < 1 && time > 2f)
-            {
-                controller.ComboAttack3();
-                time = 0;
-
-            }
-        }
     }
 
 

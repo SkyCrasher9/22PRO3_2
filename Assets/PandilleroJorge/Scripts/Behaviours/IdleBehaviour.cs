@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Timeline;
 
-public class IddleBehaviour : StateMachineBehaviour
+public class IdleBehaviour : StateMachineBehaviour
 {
     NavMeshAgent agent;
     public Transform basePoint;
