@@ -20,9 +20,9 @@ public class AngelFollowBehaviour : StateMachineBehaviour
 
         angel.SetDestination(player.position);
         float distance = Vector3.Distance(animator.transform.position, player.position);
-        if(distance < 15)
+        if(distance < 5)
         {
-            //animator.SetTrigger("TridentAtack");
+            animator.SetTrigger("TridentAtack");
         }
         else if(distance > 20)
         {

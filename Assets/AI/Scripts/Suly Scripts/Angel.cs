@@ -15,7 +15,7 @@ public class Angel : MonoBehaviour
     //Variable de los golpes de vida del Angel.
     public int lifeHits = 7;
 
-    
+  
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +26,16 @@ public class Angel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetMouseButtonDown(0))
+            this.GetComponent<Animator>().SetTrigger("IsStunned");
         
     }
 
     public void Attack()
     {
-        
+        lifeHits--;
+        Debug.Log("hAS SIFO PEGADO");
     }
+
+    IEnumerator ()
 }
