@@ -5,46 +5,41 @@ using UnityEngine.AI;
 
 public class AngelRespawnTridentBehaviour : StateMachineBehaviour
 {
-    public NavMeshAgent angel;
+    //La variable del Navegador del Angel.
     public Transform player;
 
+    //La variable para guardar al jugador.
+    public NavMeshAgent angel;
+
+    //La variable para el tiempo que estara quieto despues del Ataque.
     public float counterExposed;
-    public float counterReset;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        //Al iniciar, como esta expuesto, se ralentiza
         angel.speed = 0;
+
+        //Dejamos el contador a 0 antes de comenzar el cronometro.
         counterExposed = 0;
-        counterReset = 0;
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        //El cronometro como tal suma el tiempo hasta los 7 segundos
         counterExposed += Time.deltaTime;
-        counterReset += Time.deltaTime;
 
-        if (counterExposed >= 3)
+        //Cuando el cronometro supere los 7 segundos, este pasara de vuelta al ataque.
+        if (counterExposed >= 7)
         {
-            counterReset = 0;
             Debug.Log("Estas Expuesto bro");
-
-            
+            animator.SetTrigger("TridentAtack");
         }
-        if (counterReset >= 5)
-        {
-           Debug.Log("Sacando un nuevo Tridente");
-           animator.SetTrigger("TridentAtack");
-        }
-
-
 
     }
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        //Devolvemos los valores originales a su posicion normal.
         angel.speed = 3.5f;
         counterExposed = 0f;
-        counterReset = 0f;
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angel: {fileID: 0}
-  scan: {fileID: 0}
+  detect: {fileID: 0}
 --- !u!1101 &-6039978982471451481
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -126,8 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc674a0ac153da8418dbc1ef5641af54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angel: {fileID: 0}
   player: {fileID: 0}
+  angel: {fileID: 0}
   counterStun: 0
 --- !u!1101 &-5109512859978978154
 AnimatorStateTransition:
@@ -481,10 +481,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da26a81de9977754d82cb527cc7f00f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angel: {fileID: 0}
   player: {fileID: 0}
+  angel: {fileID: 0}
   counterExposed: 0
-  counterReset: 0
 --- !u!1107 &7258620406750421553
 AnimatorStateMachine:
   serializedVersion: 6
