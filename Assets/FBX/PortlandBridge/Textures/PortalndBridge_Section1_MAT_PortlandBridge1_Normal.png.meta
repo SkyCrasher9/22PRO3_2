@@ -1,9 +1,13 @@
 fileFormatVersion: 2
 <<<<<<< HEAD
+<<<<<<< HEAD
 guid: 453188dd8e89ae4419d7fa71d7ee8ff4
 =======
 guid: c0c060986f877c94f9d644de716534b1
 >>>>>>> origin/master
+=======
+guid: c0c060986f877c94f9d644de716534b1
+>>>>>>> 0917410 (IA Transexual Charlie)
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -108,6 +112,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
 <<<<<<< HEAD
+<<<<<<< HEAD
   - serializedVersion: 3
     buildTarget: Android
     maxTextureSize: 2048
@@ -122,6 +127,8 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> 0917410 (IA Transexual Charlie)
   spriteSheet:
     serializedVersion: 2
     sprites: []
