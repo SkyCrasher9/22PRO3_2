@@ -37,5 +37,5 @@ public class Angel : MonoBehaviour
         Debug.Log("hAS SIFO PEGADO");
     }
 
-    IEnumerator ()
+    //IEnumerator();
 }
