@@ -8,7 +8,7 @@ public class AngelDetectBehaviour : StateMachineBehaviour
     //La variable del Navegador del Angel.
     public NavMeshAgent angel;
 
-    //La variable en la que guarda el objeto que ha detectado.
+    //La variable del Navegador del Angel.
     public GameObject detect;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
