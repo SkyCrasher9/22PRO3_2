@@ -50,7 +50,7 @@ public class Player_de_prueba : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Ray ray = new Ray(rb.gameObject.transform.position, rb.gameObject.transform.forward);
+        /*Ray ray = new Ray(rb.gameObject.transform.position, rb.gameObject.transform.forward);
         Debug.DrawRay(rb.gameObject.transform.position, rb.gameObject.transform.forward, Color.red);
         RaycastHit hit; 
 
@@ -64,7 +64,7 @@ public class Player_de_prueba : MonoBehaviour
 
             }
         }
-
+        */
         float hor = Input.GetAxis("Horizontal");
         float ver = Input.GetAxis("Vertical");
         Vector3 movement = Vector3.zero;

@@ -51,7 +51,10 @@ public class Hit_Thief : StateMachineBehaviour
     }
     public void RecibirDaño()
     {
-        PuntosdeDaño++;
+    
+            PuntosdeDaño++;
+        
+        
         Debug.Log("Se suma un golpe");
     }
 

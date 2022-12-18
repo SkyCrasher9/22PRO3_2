@@ -11,6 +11,7 @@ public class Agent_Thief : MonoBehaviour
 
     public Transform[] PatrolPoints;
 
+    public float Combatiendo2; 
     //public GameObject[] PatrolPoints;
 
     public static float speed = 5f;
@@ -23,6 +24,7 @@ public class Agent_Thief : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+         
     }
+    
 }
