@@ -2,14 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DieBehaviour : StateMachineBehaviour
 {
+    NavMeshAgent agent;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        agent = animator.GetComponent<NavMeshAgent>();
+
+        agent.speed = 0;
+
         Debug.Log("me mori :(");
-        Destroy(this);
+
+
+        agent.gameObject.SetActive(false);
         
     }
 

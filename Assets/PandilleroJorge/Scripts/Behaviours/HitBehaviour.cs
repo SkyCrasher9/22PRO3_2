@@ -3,26 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class HelpBehaviour : StateMachineBehaviour
+public class HitBehaviour : StateMachineBehaviour
 {
-    public NavMeshAgent agent;
+    NavMeshAgent agent;
+
     public PandilleroController controller;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        controller = animator.GetComponent<PandilleroController>();
         agent = animator.GetComponent<NavMeshAgent>();
+        agent.speed = 0;
+        animator.GetComponent<PandilleroController>().hitCounter++;
 
-        controller.CallForHelp();
+
+        if(animator.GetComponent<PandilleroController>().hitCounter >= 3) 
+        {
+            animator.SetTrigger("ToDie");
+            agent.speed = 0;
+        }
+        else if(animator.GetComponent<PandilleroController>().hitCounter == 2)
+        {
+            animator.SetTrigger("ToHelp");
+            agent.speed = 0;    
+        }
+        else
+        {
+            animator.SetTrigger("ToPatrol");
+        }
 
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

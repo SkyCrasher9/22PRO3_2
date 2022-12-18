@@ -3,46 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class HitBehaviour : StateMachineBehaviour
+public class HelpBehaviour : StateMachineBehaviour
 {
-    NavMeshAgent agent;
-
+    public NavMeshAgent agent;
     public PandilleroController controller;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        controller = animator.GetComponent<PandilleroController>();
         agent = animator.GetComponent<NavMeshAgent>();
-        agent.speed = 0;
-        animator.GetComponent<PandilleroController>().hitCounter++;
 
+        controller.CallForHelp();
 
-        if(animator.GetComponent<PandilleroController>().hitCounter >= 3) 
-        {
-            animator.SetTrigger("ToDie");
-        }
-        else if(animator.GetComponent<PandilleroController>().hitCounter == 2)
-        {
-            animator.SetTrigger("ToHelp");
-        }
-        else
-        {
-            animator.SetTrigger("ToPatrol");
-        }
+        animator.SetTrigger("ToFollow");
 
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        
-    }
-
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
     //    
     //}
+
+    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        agent.speed = 5;
+    }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
