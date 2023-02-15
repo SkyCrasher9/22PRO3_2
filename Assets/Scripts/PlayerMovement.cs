@@ -25,12 +25,14 @@ public class PlayerMovement : MonoBehaviour
     public float desiredRotationSpeed = 0.1f;
     public float allowPlayerRotation = 0.1f;
     public Camera cam;
+    
     //Borrar
     public float InputX; //Registro de acciones
     public float InputZ;
 
     Vector3 velocity;
     bool isGroundeed;
+
 
     // Start is called before the first frame update
     void Start()
