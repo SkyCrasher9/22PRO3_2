@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public CharacterController controller;
 
     public float speed = 12f;
+    public float Speed;
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
 
@@ -18,27 +19,15 @@ public class PlayerMovement : MonoBehaviour
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
 
-
-    [Header("Settings")]
-    [SerializeField] private bool applyMotion;
-
     [Header("Turn")]
-    /*
-    // Turn
-    private float turnAmount;                   // Curren turn amount
-    private float turnSpeed;                    // Current turn speed
-    [SerializeField] private bool canTurn;
-
-    [SerializeField] private bool cameraTurn;
-    [SerializeField] private float cameraTurnSpeed;
-    [SerializeField] private float staticTurnSpeed;
-    [SerializeField] private float dynamicTurnSpeed;
-    */
     //private float forwardAmount;
     public Vector3 desiredMoveDirection;
     public float desiredRotationSpeed = 0.1f;
-    //public float allowPlayerRotation = 0.1f;
+    public float allowPlayerRotation = 0.1f;
     public Camera cam;
+    //Borrar
+    public float InputX; //Registro de acciones
+    public float InputZ;
 
     Vector3 velocity;
     bool isGroundeed;
@@ -59,27 +48,17 @@ public class PlayerMovement : MonoBehaviour
 
         
     }
-    private void TurnRotation()
-    {
-        /*
-        // Calculate turn speed based on direction
-        turnSpeed = Mathf.Lerp(staticTurnSpeed, dynamicTurnSpeed, Mathf.Abs(speed));
 
-        if (cameraTurn)
-        {
-            // Apply rotation to transform based on current camera forward direction
-            if (applyMotion && canTurn) this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.Euler(new Vector3(0f, Camera.main.transform.rotation.eulerAngles.y, 0f)), Time.deltaTime * cameraTurnSpeed);
-        }
-        else
-        {
-            // Apply rotation to transform
-            if (applyMotion && canTurn) this.transform.Rotate(0f, turnAmount * turnSpeed * Time.deltaTime, 0f);
-        }*/
-    }
     public void movementPlayer()
     {
+        
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+
+        var forward = cam.transform.forward; //La dirección "forward" será la de la cámara y no la del personaje.
+        var right = cam.transform.right;
+
+
         Vector3 move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
@@ -97,8 +76,46 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Rotate2
-        this.transform.Rotate(Vector3.up * x);
+        InputMagnitude();
 
+    }
+
+    void PlayerMoveAndRotation()
+    {
+        InputX = Input.GetAxis("Horizontal");
+        InputZ = Input.GetAxis("Vertical");
+
+        var camera = Camera.main;
+        var forward = cam.transform.forward; //La dirección "forward" será la de la cámara y no la del personaje.
+        var right = cam.transform.right;
+
+        forward.y = 0f;
+        right.y = 0f;
+
+        forward.Normalize();
+        right.Normalize();
+        desiredMoveDirection = forward * InputZ + right * InputX;
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(desiredMoveDirection), desiredRotationSpeed);
+        controller.Move(desiredMoveDirection * Time.deltaTime * speed);
+
+    }
+
+    void InputMagnitude()
+    {
+        InputX = Input.GetAxis("Horizontal");
+        InputZ = Input.GetAxis("Vertical");
+
+        Speed = new Vector2(InputX, InputZ).sqrMagnitude;
+
+        if (Speed > allowPlayerRotation)
+        {
+            PlayerMoveAndRotation(); //Rotamos al personaje
+        }
+        else if (Speed < allowPlayerRotation)
+        {
+            //No rotará el personaje
+        }
     }
 
     public void IsGroundeedPlayer()
@@ -110,4 +127,8 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
     }
+
+
+
+
 }

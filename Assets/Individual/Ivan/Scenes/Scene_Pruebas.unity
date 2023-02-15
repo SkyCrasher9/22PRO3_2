@@ -416,7 +416,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123543695}
-  m_LocalRotation: {x: 0.029064177, y: 0.0000000010749447, z: -3.1255585e-11, w: 0.9995776}
+  m_LocalRotation: {x: 0.029064177, y: -0.0000000010749446, z: 3.125558e-11, w: 0.9995776}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -498,7 +498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
+  m_BindingMode: 0
   m_FollowOffset: {x: 0, y: 2.5, z: -5}
   m_XDamping: 1
   m_YDamping: 1
@@ -663,7 +663,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435122023}
-  m_LocalRotation: {x: 0.029064175, y: 0.0000000021498892, z: -6.251116e-11, w: 0.9995776}
+  m_LocalRotation: {x: 0.029064175, y: -0.0000000021498892, z: 6.251116e-11, w: 0.9995776}
   m_LocalPosition: {x: -1.6151772, y: 2.4999995, z: -5.484478}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -917,7 +917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
+  m_BindingMode: 0
   m_FollowOffset: {x: 0, y: 2.5, z: -5}
   m_XDamping: 1
   m_YDamping: 1
@@ -1075,7 +1075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 4
+  m_BindingMode: 0
   m_FollowOffset: {x: 0, y: 2.5, z: -5}
   m_XDamping: 1
   m_YDamping: 1
@@ -1238,12 +1238,12 @@ MonoBehaviour:
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
-    m_enabled: 1
+    m_enabled: 0
     m_WaitTime: 0.1
     m_RecenteringTime: 0.4
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
-  m_BindingMode: 4
+  m_BindingMode: 0
   m_SplineCurvature: 0.2
   m_Orbits:
   - m_Height: 4.5
@@ -1298,8 +1298,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739795913}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.6151772, y: 0.032000422, z: 0.484478}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1382,7 +1382,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848300471}
-  m_LocalRotation: {x: 0.047241163, y: -0.000000017187169, z: 8.1284934e-10, w: 0.99888355}
+  m_LocalRotation: {x: 0.04724118, y: 0.00000001718717, z: -8.1284973e-10, w: 0.99888355}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1435,7 +1435,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.01, y: 1.5, z: 1.4475086}
-  m_Center: {x: 0, y: 1, z: 0.7237543}
+  m_Center: {x: 0, y: 1, z: 0.92}
 --- !u!1 &2056335051
 GameObject:
   m_ObjectHideFlags: 3
@@ -1512,7 +1512,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056335051}
-  m_LocalRotation: {x: 0.0109256, y: 4.8404604e-17, z: -7.0621284e-19, w: 0.99994034}
+  m_LocalRotation: {x: 0.010925601, y: -3.7419814e-24, z: 6.675257e-26, w: 0.99994034}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1677,6 +1677,7 @@ GameObject:
   - component: {fileID: 1135864838412265375}
   - component: {fileID: 1135864838412265374}
   - component: {fileID: 1135864838412265373}
+  - component: {fileID: 1135864838412265376}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1896,6 +1897,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1135864838412265374}
   speed: 12
+  Speed: 0
   gravity: -9.81
   jumpHeight: 3
   groundCheck: {fileID: 1739795914}
@@ -1903,10 +1905,12 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 64
-  applyMotion: 1
   desiredMoveDirection: {x: 0, y: 0, z: 0}
-  desiredRotationSpeed: 0.01
+  desiredRotationSpeed: 0.2
+  allowPlayerRotation: 0.1
   cam: {fileID: 0}
+  InputX: 0
+  InputZ: 0
 --- !u!143 &1135864838412265374
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1939,6 +1943,26 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &1135864838412265376
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 326712879209987366}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 72c78ed05d977804aa5e75c93bdc2b08, type: 3}
+  m_Controller: {fileID: 9100000, guid: 1f59fec60589f7b4cac8861d8d80e6f8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1265653614454325784
 GameObject:
   m_ObjectHideFlags: 0
