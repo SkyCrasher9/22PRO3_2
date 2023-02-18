@@ -26,6 +26,7 @@ public class Patrol_Thief : StateMachineBehaviour
             GotoNextPoint();
         IdleTime2(animator); //Declaración del temporizador para volver al idle
         Ray ray = new Ray(Thief_Agent.gameObject.transform.position, Thief_Agent.gameObject.transform.forward);
+
         //El rayo emitido tomara la posición del agente y se creara delante de él
         Debug.DrawRay(Thief_Agent.gameObject.transform.position, Thief_Agent.gameObject.transform.forward, Color.red);
         RaycastHit hit; //Declaración de la variable hit del Raycast
@@ -39,6 +40,13 @@ public class Patrol_Thief : StateMachineBehaviour
             } 
         }
     }
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Debug.DrawRay(Thief_Agent.gameObject.transform.position, Thief_Agent.gameObject.transform.forward, Color.red);
+    }
+#endif
     public void GotoNextPoint()
     {    //Manda al agante volver al inicio si no hay más puntos de ruta indicados                   
         if (PatrolPoints.Length == 0)// Si a llegado al último punto del array su detino será el primer punto del array
