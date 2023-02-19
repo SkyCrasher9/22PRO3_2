@@ -11,7 +11,7 @@ public class Agent_Thief : MonoBehaviour
 
     public Transform[] PatrolPoints; //Puntos de patrulla del Thief
     
-    public static float speed = 5f; //Velocidad inicial del Thief
+    public static float speed = 2f; //Velocidad inicial del Thief
     // Start is called before the first frame update
     void Start()
     {

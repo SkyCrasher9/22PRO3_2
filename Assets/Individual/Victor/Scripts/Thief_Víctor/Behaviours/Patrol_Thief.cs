@@ -10,12 +10,13 @@ public class Patrol_Thief : StateMachineBehaviour
     public GameObject PlayerObjetivo; //Variable para el jugador al que debe acercarse al detecarlo
     public Transform Target; //Indicará en el inspector cual es el objetivo del Thief
     private int NextPoint = 0;
-    public static float speed = 5f;
+    public static float speed;
     public float IdleReturn;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         Thief_Agent = animator.gameObject.GetComponent<NavMeshAgent>();
+        Thief_Agent.speed = 2f;
         PatrolPoints = animator.gameObject.GetComponent<Agent_Thief>().PatrolPoints;//Llama a la variable PatrolPoints en el Script Agent_Thief
         GotoNextPoint();
     }
@@ -31,7 +32,7 @@ public class Patrol_Thief : StateMachineBehaviour
         Debug.DrawRay(Thief_Agent.gameObject.transform.position, Thief_Agent.gameObject.transform.forward, Color.red);
         RaycastHit hit; //Declaración de la variable hit del Raycast
 
-        if (Physics.Raycast(ray, out hit, 2.5f)) //Al acercarse lo suficiente al player pasará al estado Follow_Player
+        if (Physics.Raycast(ray, out hit, 5f)) //Al acercarse lo suficiente al player pasará al estado Follow_Player
         {
             if (hit.collider.tag == "Player")
             { 
