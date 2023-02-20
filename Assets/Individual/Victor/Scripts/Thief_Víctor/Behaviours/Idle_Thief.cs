@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Idle_Thief : StateMachineBehaviour
 {
     public NavMeshAgent Thief_Agent;
-    public static float speed = 5f;
+    public static float speed = 2f;
     public float IdleWait; 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
