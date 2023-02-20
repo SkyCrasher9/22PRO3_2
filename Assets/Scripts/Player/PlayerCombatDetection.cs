@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 
@@ -7,24 +8,26 @@ public class PlayerCombatDetection : MonoBehaviour
 {
     #region Inspector Methods
     [Header("Settings")]
-    [SerializeField] private bool isPlayer;
+    //[SerializeField] private bool isPlayer;
     [SerializeField] private string characterLayer;
 
     [Header("References")]
-    [SerializeField] private PlayerMovement character;
+    [SerializeField] private PlayerCombat playerCombat;
     #endregion
 
     #region Detection Methods
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer(characterLayer))
         {
-            if (isPlayer)
+            Debug.Log(other.gameObject.layer + "Se está recogiendo el enemigo");
+            if (playerCombat.isPlayer)
             {
                 if (other.gameObject.tag == "Enemy")
                 {
-                    Character otherChar = other.GetComponent<Character>();
+                    //Character otherChar = other.GetComponent<Character>();
                     //for (int i = 0; i < character.Combats.Length; i++) character.Combats[i].Targets.Add(otherChar);
+                    playerCombat.enemys.Add(other.gameObject);
                 }
             }
             else
@@ -33,21 +36,24 @@ public class PlayerCombatDetection : MonoBehaviour
                 {
                     Character otherChar = other.GetComponent<Character>();
                     //for (int i = 0; i < character.Combats.Length; i++) character.Combats[i].Targets.Add(otherChar);
+
+                    Debug.Log("Se está soltó el enemigo");
                 }
             }
         }
     }
-
-    private void OnTriggerExit(Collider other)
+    
+    public void OnTriggerExit(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer(characterLayer))
         {
-            if (isPlayer)
+            if (playerCombat.isPlayer)
             {
                 if (other.gameObject.tag == "Enemy")
                 {
-                    Character otherChar = other.GetComponent<Character>();
+                    //Character otherChar = other.GetComponent<Character>();
                     //for (int i = 0; i < character.Combats.Length; i++) character.Combats[i].Targets.Remove(otherChar);
+                    playerCombat.enemys.Remove(other.gameObject);
                 }
             }
             else
