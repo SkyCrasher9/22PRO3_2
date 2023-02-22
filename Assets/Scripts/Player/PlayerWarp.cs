@@ -7,6 +7,7 @@ using Cinemachine;
 using System;
 using DG.Tweening;
 using Unity.VisualScripting;
+using System.Threading;
 
 public class PlayerWarp : MonoBehaviour
 {
@@ -48,6 +49,9 @@ public class PlayerWarp : MonoBehaviour
         else
         {
             canvas.SetActive(false);
+
+            //Para reaformar la posicion de la camara.
+            aimCam.GetComponent<CinemachineFreeLook>().m_RecenterToTargetHeading.m_enabled = false;
         }
     }
 
@@ -92,26 +96,21 @@ public class PlayerWarp : MonoBehaviour
         return index;
 
     }
+
+
     public void RotateTowards(Transform t)
     {
-        //float lockPos = 0;
         if (isLocked) 
         {
-            float inputCameraX = Quaternion.LookRotation(t.position).x;
-            float inputCameraZ = Quaternion.LookRotation(t.position).z;
+            transform.rotation = Quaternion.LookRotation(new Vector3(t.transform.position.x, transform.position.y, t.transform.position.z) - transform.position);
 
-            //transform.rotation = Quaternion.Euler(0f, inputCameraY, inputCameraZ);
-            transform.rotation = Quaternion.Euler(0, transform.rotation.y, transform.rotation.z);
-
-            //transform.rotation = Quaternion.LookRotation(t.position - transform.position);
-            
-           //transform.localRotation = Quaternion.LookRotation(t.position - new Vector3(inputCameraX, 0, 0));
-
+            aimCam.GetComponent<CinemachineFreeLook>().m_RecenterToTargetHeading.m_enabled = true;
         }
-        
-        
-        //Vector3 rotationLook = new Vector3(transformTarget.transform.position.x, 0, transformTarget.transform.position.z);
-        //transform.LookAt(rotationLook);
+        else
+        {
+            aimCam.GetComponent<CinemachineFreeLook>().m_RecenterToTargetHeading.m_enabled = false;
+        }
+
     }
 
     public void finalTerget()
@@ -131,29 +130,23 @@ public class PlayerWarp : MonoBehaviour
             LockInterface(true);
             isLocked = true;
 
-            //aimCam.LookAt = target.transform;
+            
 
-            //Prueba
-            //input.blockRotationPlayer = true;
         }
 
         if (Input.GetMouseButtonUp(1) && isLocked == true)
         {
             LockInterface(false);
             isLocked = false;
-            //aimCam.LookAt = transformTarget.transform;
 
-            //Prueba
-            //input.blockRotationPlayer = false;
+            
         }
 
         if (!isLocked)
             return;
-
+        //Borrar
         if (Input.GetMouseButtonDown(0))
         {
-            //input.RotateTowards(target);
-            //input.canMove = false;
 
         }
     }
