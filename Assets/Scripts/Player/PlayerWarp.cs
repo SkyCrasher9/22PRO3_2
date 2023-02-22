@@ -50,8 +50,10 @@ public class PlayerWarp : MonoBehaviour
         {
             canvas.SetActive(false);
 
-            //Para reaformar la posicion de la camara.
+            //Para reafirmar la posicion de la camara.
             aimCam.GetComponent<CinemachineFreeLook>().m_RecenterToTargetHeading.m_enabled = false;
+            LockInterface(false);
+            isLocked = false;
         }
     }
 
@@ -130,8 +132,6 @@ public class PlayerWarp : MonoBehaviour
             LockInterface(true);
             isLocked = true;
 
-            
-
         }
 
         if (Input.GetMouseButtonUp(1) && isLocked == true)
@@ -139,11 +139,11 @@ public class PlayerWarp : MonoBehaviour
             LockInterface(false);
             isLocked = false;
 
-            
         }
 
         if (!isLocked)
             return;
+
         //Borrar
         if (Input.GetMouseButtonDown(0))
         {
