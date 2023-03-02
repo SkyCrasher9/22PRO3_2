@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
     public float jumpHeight = 3f;
 
+    [Header("Animaciones")]
+    public Animator anim;
+
     /*
     public CharacterController controller;
 
@@ -65,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
     {
         cam = Camera.main;
         controller = this.GetComponent<CharacterController>();
+        anim = this.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -72,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
     {
         IsGroundeedPlayer();
         movementPlayer();
+        anim.SetFloat("Forward", Speed);
 
         //TurnRotation();
 
