@@ -76,7 +76,13 @@ public class PlayerMovement : MonoBehaviour
     {
         IsGroundeedPlayer();
         movementPlayer();
-        anim.SetFloat("Forward", Speed);
+
+        //Provisional medidor de velocidad.
+        if (Speed < 0.5f)
+        {
+            anim.SetFloat("Forward", Speed);
+        }
+        
 
         //TurnRotation();
 
